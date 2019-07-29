@@ -1,0 +1,23 @@
+﻿DSAA PROJECT REPORT
+- Aayush Goel (20171188)
+- Nonidh Singh (20171203)
+- Himanshu (20171033)
+
+Libraries Imported :-
+
+os, random, cv2, sys, threading, numpy, skimage.measure, PIL, pytesseract, difflib,Levenshtein
+
+How To Run :-
+python3 20171203_20171188_20171033 /path_to_slides_dir/     /path_to_frames_dir/
+
+Algorithms Used :-
+Normalised Co-relation
+Scale-Invariant Feature Transform (SIFT)
+Optical Character Recognition (OCR)
+
+Logic and Workflow :-
+
+We start with reading all the files in the directory of the frames which is passed as the second argument while executing the file. For each file read , we firstly calculate the normalised co-relation of the frame with all the slides given. The normalised co-relation gives an idea for the corresponding localisation of parts of frames to the corresponding slides. We might land up with similar normalised co-relation values for different slides therefore, we need to optimize it further. To achieve that we select the top 6 files which have the maximum co-relation among the slides and scale invariant-feature transform (sift) is carried with the frame and all of the other 6 slides. The sift outputs the number of similar points between the frame and each corresponding slide. This helps us to find the most optimal image of the 6. Normalised Co-relation ensures that totally dissimilar images are eliminated from the comparison whereas sift tries to find the maximum similarity by judjing the number of similar points. If the number of points are relatively closer (<8 for the code) for the two max similar frames , there is a high probability of sift predicting wrong output due to similar values being output for two different slides. In such a scenario we apply the OCR algorithm with both of these slides and the selected frame and the final result is decided by the OCR output and written into the corresponding 20171203_20171188_20171033.txt file. The possibility of error is reduced by going through multiple phases with each reducing the probability of error considerably.  By using the following multiple phase comparison depending upon the conditions involved, we achieve quite a high accuracy. By carrying out the test on given sample_tests as well a dataset we had by clicking pics of our AI course slides and the uploaded slides we achieved an accuracy of about 92-93% . 
+
+
+
